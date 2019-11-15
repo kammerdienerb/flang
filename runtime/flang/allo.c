@@ -1239,7 +1239,7 @@ ENTF90(SH_ALLOCA, hmalloc_alloca)(char *h, __INT_T *nelem, __INT_T *kind, __INT_
     }
   }
   (void)I8(__hmalloc_fort_alloc)(
-      id, *nelem, (dtype)*kind, (size_t)*len, stat, pointer, offset, CADR(base), 1,
+      h, *nelem, (dtype)*kind, (size_t)*len, stat, pointer, offset, CADR(base), 1,
       LOCAL_MODE ? __hmalloc_fort_malloc_without_abort : __hmalloc_fort_gmalloc_without_abort);
   if (!ISPRESENT(stat)) {
     save_alloc(*nelem, *len, pointer);
@@ -1550,7 +1550,7 @@ ENTF90(SH_KALLOC, hmalloc_kalloc)(char *h, __INT8_T *nelem, __INT_T *kind, __INT
     }
   }
   (void)I8(__hmalloc_fort_kalloc)(
-      id, *nelem, (dtype)*kind, (size_t)*len, stat, pointer, offset, CADR(base), 1,
+      h, *nelem, (dtype)*kind, (size_t)*len, stat, pointer, offset, CADR(base), 1,
       LOCAL_MODE ? __hmalloc_fort_malloc_without_abort : __hmalloc_fort_gmalloc_without_abort);
   if (!ISPRESENT(stat)) {
     save_alloc(*nelem, *len, pointer);
@@ -1573,7 +1573,7 @@ ENTF90(SH_CALLOC, hmalloc_calloc)(char *h, __INT_T *nelem, __INT_T *kind, __INT_
                        DCHAR(base) DCLEN(base))
 {
   (void)I8(__hmalloc_fort_alloc)(
-      id, *nelem, (dtype)*kind, (size_t)*len, stat, pointer, offset, CADR(base), 1,
+      h, *nelem, (dtype)*kind, (size_t)*len, stat, pointer, offset, CADR(base), 1,
       LOCAL_MODE ? __hmalloc_fort_calloc_without_abort : __hmalloc_fort_gcalloc_without_abort);
 }
 
@@ -1703,7 +1703,7 @@ ENTF90(SH_KCALLOC, hmalloc_kcalloc)(char *h, __INT8_T *nelem, __INT_T *kind, __I
                          DCHAR(base) DCLEN(base))
 {
   (void)I8(__hmalloc_fort_kalloc)(
-      id, *nelem, (dtype)*kind, (size_t)*len, stat, pointer, offset, CADR(base), 1,
+      h, *nelem, (dtype)*kind, (size_t)*len, stat, pointer, offset, CADR(base), 1,
       LOCAL_MODE ? __hmalloc_fort_calloc_without_abort : __hmalloc_fort_gcalloc_without_abort);
 }
 
@@ -1726,7 +1726,7 @@ ENTF90(SH_PTR_ALLOCA, hmalloc_ptr_alloca)(char *h, __INT_T *nelem, __INT_T *kind
                              __POINT_T *offset, DCHAR(base) DCLEN64(base))
 {
   (void)I8(__hmalloc_fort_alloc)(
-      id, *nelem, (dtype)*kind, (size_t)*len, stat, pointer, offset, CADR(base), 0,
+      h, *nelem, (dtype)*kind, (size_t)*len, stat, pointer, offset, CADR(base), 0,
       LOCAL_MODE ? __hmalloc_fort_malloc_without_abort : __hmalloc_fort_gmalloc_without_abort);
 }
 
@@ -2202,7 +2202,7 @@ ENTF90(SH_PTR_KALLOC, hmalloc_ptr_kalloc)(char *h, __INT8_T *nelem, __INT_T *kin
                                DCHAR(base) DCLEN(base))
 {
   (void)I8(__hmalloc_fort_kalloc)(
-      id, *nelem, (dtype)*kind, (size_t)*len, stat, pointer, offset, CADR(base), 0,
+      h, *nelem, (dtype)*kind, (size_t)*len, stat, pointer, offset, CADR(base), 0,
       LOCAL_MODE ? __hmalloc_fort_malloc_without_abort : __hmalloc_fort_gmalloc_without_abort);
 }
 
@@ -2222,7 +2222,7 @@ ENTF90(SH_PTR_CALLOC, hmalloc_ptr_calloc)(char *h, __INT_T *nelem, __INT_T *kind
                                __POINT_T *offset, DCHAR(base) DCLEN(base))
 {
   (void)I8(__hmalloc_fort_alloc)(
-      id, *nelem, (dtype)*kind, (size_t)*len, stat, pointer, offset, CADR(base), 0,
+      h, *nelem, (dtype)*kind, (size_t)*len, stat, pointer, offset, CADR(base), 0,
       LOCAL_MODE ? __hmalloc_fort_calloc_without_abort : __hmalloc_fort_gcalloc_without_abort);
 }
 
@@ -2357,7 +2357,7 @@ ENTF90(SH_PTR_KCALLOC, hmalloc_ptr_kcalloc)(char *h, __INT8_T *nelem, __INT_T *k
                                  DCHAR(base) DCLEN(base))
 {
   (void)I8(__hmalloc_fort_kalloc)(
-      id, *nelem, (dtype)*kind, (size_t)*len, stat, pointer, offset, CADR(base), 0,
+      h, *nelem, (dtype)*kind, (size_t)*len, stat, pointer, offset, CADR(base), 0,
       LOCAL_MODE ? __hmalloc_fort_calloc_without_abort : __hmalloc_fort_gcalloc_without_abort);
 }
 

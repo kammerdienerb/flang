@@ -1223,7 +1223,7 @@ ENTF90(ALLOCA, alloca)(__INT_T *nelem, __INT_T *kind, __INT_T *len,
 }
 
 void
-ENTF90(SH_ALLOCA, hmalloc_alloca)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
+ENTF90(HMALLOC_ALLOCA, hmalloc_alloca)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
                        __STAT_T *stat, char **pointer, __POINT_T *offset,
                        DCHAR(base) DCLEN64(base))
 {
@@ -1257,7 +1257,7 @@ ENTF90(ALLOC, alloc)(__INT_T *nelem, __INT_T *kind, __INT_T *len,
 }
 
 void
-ENTF90(SH_ALLOC, hmalloc_alloc)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
+ENTF90(HMALLOC_ALLOC, hmalloc_alloc)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
                      __STAT_T *stat, char **pointer, __POINT_T *offset,
                      DCHAR(base) DCLEN(base))
 {
@@ -1293,7 +1293,7 @@ ENTF90(ALLOC03A, alloc03a)(__INT_T *nelem, __INT_T *kind, __INT_T *len,
 }
 
 void
-ENTF90(SH_ALLOC03A, hmalloc_alloc03a)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
+ENTF90(HMALLOC_ALLOC03A, hmalloc_alloc03a)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
                          __STAT_T *stat, char **pointer, __POINT_T *offset,
                          __INT_T *firsttime, DCHAR(errmsg) DCLEN64(errmsg))
 {
@@ -1330,11 +1330,11 @@ ENTF90(ALLOC03, alloc03)(__INT_T *nelem, __INT_T *kind, __INT_T *len,
 }
 
 void
-ENTF90(SH_ALLOC03, hmalloc_alloc03)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
+ENTF90(HMALLOC_ALLOC03, hmalloc_alloc03)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
                          __STAT_T *stat, char **pointer, __POINT_T *offset,
                          __INT_T *firsttime, DCHAR(errmsg) DCLEN(errmsg))
 {
-  ENTF90(SH_ALLOC03A, hmalloc_alloc03a)(h, nelem, kind, len, stat, pointer, offset,
+  ENTF90(HMALLOC_ALLOC03A, hmalloc_alloc03a)(h, nelem, kind, len, stat, pointer, offset,
                              firsttime, CADR(errmsg), (__CLEN_T)CLEN(errmsg));
 }
 
@@ -1352,7 +1352,7 @@ ENTF90(ALLOC03_CHKA, alloc03_chka)(__INT_T *nelem, __INT_T *kind, __INT_T *len,
 }
 
 void
-ENTF90(SH_ALLOC03_CHKA, hmalloc_alloc03_chka)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
+ENTF90(HMALLOC_ALLOC03_CHKA, hmalloc_alloc03_chka)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
                          __STAT_T *stat, char **pointer, __POINT_T *offset,
                          __INT_T *firsttime, DCHAR(errmsg) DCLEN64(errmsg))
 {
@@ -1360,7 +1360,7 @@ ENTF90(SH_ALLOC03_CHKA, hmalloc_alloc03_chka)(char *h, __INT_T *nelem, __INT_T *
   if (*pointer && I8(__fort_allocated)(*pointer)) {
     __fort_abort("ALLOCATE: array already allocated");
   }
-  ENTF90(SH_ALLOC03,hmalloc_alloc03)(h, nelem, kind, len, stat, pointer, offset,
+  ENTF90(HMALLOC_ALLOC03,hmalloc_alloc03)(h, nelem, kind, len, stat, pointer, offset,
                             firsttime,CADR(errmsg), CLEN(errmsg));
 }
 
@@ -1376,11 +1376,11 @@ ENTF90(ALLOC03_CHK, alloc03_chk)(__INT_T *nelem, __INT_T *kind, __INT_T *len,
 }
 
 void
-ENTF90(SH_ALLOC03_CHK, hmalloc_alloc03_chk)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
+ENTF90(HMALLOC_ALLOC03_CHK, hmalloc_alloc03_chk)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
                          __STAT_T *stat, char **pointer, __POINT_T *offset,
                          __INT_T *firsttime, DCHAR(errmsg) DCLEN(errmsg))
 {
-  ENTF90(SH_ALLOC03_CHKA, hmalloc_alloc03_chka)(h, nelem, kind, len,
+  ENTF90(HMALLOC_ALLOC03_CHKA, hmalloc_alloc03_chka)(h, nelem, kind, len,
                          stat, pointer, offset,
                          firsttime, CADR(errmsg), (__CLEN_T)CLEN(errmsg));
 }
@@ -1414,7 +1414,7 @@ ENTF90(ALLOC04A, alloc04a)(__NELEM_T *nelem, __INT_T *kind, __INT_T *len,
 }
 
 void
-ENTF90(SH_ALLOC04A, hmalloc_alloc04a)(char *h, __NELEM_T *nelem, __INT_T *kind, __INT_T *len,
+ENTF90(HMALLOC_ALLOC04A, hmalloc_alloc04a)(char *h, __NELEM_T *nelem, __INT_T *kind, __INT_T *len,
                          __STAT_T *stat, char **pointer, __POINT_T *offset,
                          __INT_T *firsttime, __NELEM_T *align,
                          DCHAR(errmsg) DCLEN64(errmsg))
@@ -1453,12 +1453,12 @@ ENTF90(ALLOC04, alloc04)(__NELEM_T *nelem, __INT_T *kind, __INT_T *len,
 }
 
 void
-ENTF90(SH_ALLOC04, hmalloc_alloc04)(char *h, __NELEM_T *nelem, __INT_T *kind, __INT_T *len,
+ENTF90(HMALLOC_ALLOC04, hmalloc_alloc04)(char *h, __NELEM_T *nelem, __INT_T *kind, __INT_T *len,
                          __STAT_T *stat, char **pointer, __POINT_T *offset,
                          __INT_T *firsttime, __NELEM_T *align,
                          DCHAR(errmsg) DCLEN(errmsg))
 {
-  ENTF90(SH_ALLOC04A, hmalloc_alloc04a)(h, nelem, kind, len, stat, pointer, offset, firsttime,
+  ENTF90(HMALLOC_ALLOC04A, hmalloc_alloc04a)(h, nelem, kind, len, stat, pointer, offset, firsttime,
                align, CADR(errmsg), (__CLEN_T)CLEN(errmsg));
 }
 
@@ -1478,7 +1478,7 @@ ENTF90(ALLOC04_CHKA, alloc04_chka)(__NELEM_T *nelem, __INT_T *kind,
 }
 
 void
-ENTF90(SH_ALLOC04_CHKA, hmalloc_alloc04_chka)(char *h, __NELEM_T *nelem, __INT_T *kind,
+ENTF90(HMALLOC_ALLOC04_CHKA, hmalloc_alloc04_chka)(char *h, __NELEM_T *nelem, __INT_T *kind,
                                  __INT_T *len, __STAT_T *stat,
                                  char **pointer, __POINT_T *offset,
                                  __INT_T *firsttime, __NELEM_T *align,
@@ -1488,7 +1488,7 @@ ENTF90(SH_ALLOC04_CHKA, hmalloc_alloc04_chka)(char *h, __NELEM_T *nelem, __INT_T
   if (*pointer && I8(__fort_allocated)(*pointer)) {
     __fort_abort("ALLOCATE: array already allocated");
   }
-  ENTF90(SH_ALLOC04,hmalloc_alloc04)(h, nelem, kind, len, stat, pointer, offset, firsttime,
+  ENTF90(HMALLOC_ALLOC04,hmalloc_alloc04)(h, nelem, kind, len, stat, pointer, offset, firsttime,
            align, CADR(errmsg), CLEN(errmsg));
 }
 
@@ -1505,13 +1505,13 @@ ENTF90(ALLOC04_CHK, alloc04_chk)(__NELEM_T *nelem, __INT_T *kind,
 }
 
 void
-ENTF90(SH_ALLOC04_CHK, hmalloc_alloc04_chk)(char *h, __NELEM_T *nelem, __INT_T *kind,
+ENTF90(HMALLOC_ALLOC04_CHK, hmalloc_alloc04_chk)(char *h, __NELEM_T *nelem, __INT_T *kind,
                                  __INT_T *len, __STAT_T *stat,
                                  char **pointer, __POINT_T *offset,
                                  __INT_T *firsttime, __NELEM_T *align,
                                  DCHAR(errmsg) DCLEN(errmsg))
 {
-  ENTF90(SH_ALLOC04_CHKA, hmalloc_alloc04_chka)(h, nelem, kind, len, stat, pointer, offset,
+  ENTF90(HMALLOC_ALLOC04_CHKA, hmalloc_alloc04_chka)(h, nelem, kind, len, stat, pointer, offset,
                                      firsttime, align, CADR(errmsg), (__CLEN_T)CLEN(errmsg));
 }
 
@@ -1537,7 +1537,7 @@ ENTF90(KALLOC, kalloc)(__INT8_T *nelem, __INT_T *kind, __INT_T *len,
 }
 
 void
-ENTF90(SH_KALLOC, hmalloc_kalloc)(char *h, __INT8_T *nelem, __INT_T *kind, __INT_T *len,
+ENTF90(HMALLOC_KALLOC, hmalloc_kalloc)(char *h, __INT8_T *nelem, __INT_T *kind, __INT_T *len,
                        __STAT_T *stat, char **pointer, __POINT_T *offset,
                        DCHAR(base) DCLEN(base))
 {
@@ -1568,7 +1568,7 @@ ENTF90(CALLOC, calloc)(__INT_T *nelem, __INT_T *kind, __INT_T *len,
 }
 
 void
-ENTF90(SH_CALLOC, hmalloc_calloc)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
+ENTF90(HMALLOC_CALLOC, hmalloc_calloc)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
                        __STAT_T *stat, char **pointer, __POINT_T *offset,
                        DCHAR(base) DCLEN(base))
 {
@@ -1593,7 +1593,7 @@ ENTF90(CALLOC03A, calloc03a)(__INT_T *nelem, __INT_T *kind, __INT_T *len,
 }
 
 void
-ENTF90(SH_CALLOC03A, hmalloc_calloc03a)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
+ENTF90(HMALLOC_CALLOC03A, hmalloc_calloc03a)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
                            __STAT_T *stat, char **pointer,
                            __POINT_T *offset, __INT_T *firsttime,
                            DCHAR(errmsg) DCLEN64(errmsg))
@@ -1621,12 +1621,12 @@ ENTF90(CALLOC03, calloc03)(__INT_T *nelem, __INT_T *kind, __INT_T *len,
 }
 
 void
-ENTF90(SH_CALLOC03, hmalloc_calloc03)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
+ENTF90(HMALLOC_CALLOC03, hmalloc_calloc03)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
                            __STAT_T *stat, char **pointer,
                            __POINT_T *offset, __INT_T *firsttime,
                            DCHAR(errmsg) DCLEN(errmsg))
 {
-  ENTF90(SH_CALLOC03A, hmalloc_calloc03a)(h, nelem, kind, len,
+  ENTF90(HMALLOC_CALLOC03A, hmalloc_calloc03a)(h, nelem, kind, len,
                            stat, pointer,
                            offset, firsttime,
                            CADR(errmsg), (__CLEN_T)CLEN(errmsg));
@@ -1648,7 +1648,7 @@ ENTF90(CALLOC04A, calloc04a)(__INT_T *nelem, __INT_T *kind, __INT_T *len,
 }
 
 void
-ENTF90(SH_CALLOC04A, hmalloc_calloc04a)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
+ENTF90(HMALLOC_CALLOC04A, hmalloc_calloc04a)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
                            __STAT_T *stat, char **pointer,
                            __POINT_T *offset, __INT_T *firsttime,
                            __NELEM_T *align, DCHAR(errmsg) DCLEN64(errmsg))
@@ -1676,12 +1676,12 @@ ENTF90(CALLOC04, calloc04)(__INT_T *nelem, __INT_T *kind, __INT_T *len,
 }
 
 void
-ENTF90(SH_CALLOC04, hmalloc_calloc04)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
+ENTF90(HMALLOC_CALLOC04, hmalloc_calloc04)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
                            __STAT_T *stat, char **pointer,
                            __POINT_T *offset, __INT_T *firsttime,
                            __NELEM_T *align, DCHAR(errmsg) DCLEN(errmsg))
 {
-  ENTF90(SH_CALLOC04A, hmalloc_calloc04a)(h, nelem, kind, len,
+  ENTF90(HMALLOC_CALLOC04A, hmalloc_calloc04a)(h, nelem, kind, len,
                            stat, pointer,
                            offset, firsttime,
                            align, CADR(errmsg), (__CLEN_T)CLEN(errmsg));
@@ -1698,7 +1698,7 @@ ENTF90(KCALLOC, kcalloc)(__INT8_T *nelem, __INT_T *kind, __INT_T *len,
 }
 
 void
-ENTF90(SH_KCALLOC, hmalloc_kcalloc)(char *h, __INT8_T *nelem, __INT_T *kind, __INT_T *len,
+ENTF90(HMALLOC_KCALLOC, hmalloc_kcalloc)(char *h, __INT8_T *nelem, __INT_T *kind, __INT_T *len,
                          __STAT_T *stat, char **pointer, __POINT_T *offset,
                          DCHAR(base) DCLEN(base))
 {
@@ -1721,7 +1721,7 @@ ENTF90(PTR_ALLOCA, ptr_alloca)(__INT_T *nelem, __INT_T *kind, __INT_T *len,
 }
 
 void
-ENTF90(SH_PTR_ALLOCA, hmalloc_ptr_alloca)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
+ENTF90(HMALLOC_PTR_ALLOCA, hmalloc_ptr_alloca)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
                              __STAT_T *stat, char **pointer,
                              __POINT_T *offset, DCHAR(base) DCLEN64(base))
 {
@@ -1742,11 +1742,11 @@ ENTF90(PTR_ALLOC, ptr_alloc)(__INT_T *nelem, __INT_T *kind, __INT_T *len,
 }
 
 void
-ENTF90(SH_PTR_ALLOC, hmalloc_ptr_alloc)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
+ENTF90(HMALLOC_PTR_ALLOC, hmalloc_ptr_alloc)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
                              __STAT_T *stat, char **pointer,
                              __POINT_T *offset, DCHAR(base) DCLEN(base))
 {
-  ENTF90(SH_PTR_ALLOCA, hmalloc_ptr_alloca)(h, nelem, kind, len,
+  ENTF90(HMALLOC_PTR_ALLOCA, hmalloc_ptr_alloca)(h, nelem, kind, len,
                              stat, pointer,
                              offset, CADR(base), (__CLEN_T)CLEN(base));
 }
@@ -1769,7 +1769,7 @@ ENTF90(PTR_ALLOC03A, ptr_alloc03a)(__INT_T *nelem, __INT_T *kind, __INT_T *len,
 }
 
 void
-ENTF90(SH_PTR_ALLOC03A, hmalloc_ptr_alloc03a)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
+ENTF90(HMALLOC_PTR_ALLOC03A, hmalloc_ptr_alloc03a)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
                          __STAT_T *stat, char **pointer, __POINT_T *offset,
                          __INT_T *firsttime, DCHAR(errmsg) DCLEN64(errmsg))
 {
@@ -1793,11 +1793,11 @@ ENTF90(PTR_ALLOC03, ptr_alloc03)(__INT_T *nelem, __INT_T *kind, __INT_T *len,
 }
 
 void
-ENTF90(SH_PTR_ALLOC03, hmalloc_ptr_alloc03)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
+ENTF90(HMALLOC_PTR_ALLOC03, hmalloc_ptr_alloc03)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
                          __STAT_T *stat, char **pointer, __POINT_T *offset,
                          __INT_T *firsttime, DCHAR(errmsg) DCLEN(errmsg))
 {
-  ENTF90(SH_PTR_ALLOC03A, hmalloc_ptr_alloc03a)(h, nelem, kind, len,
+  ENTF90(HMALLOC_PTR_ALLOC03A, hmalloc_ptr_alloc03a)(h, nelem, kind, len,
                          stat, pointer, offset,
                          firsttime, CADR(errmsg), (__CLEN_T)CLEN(errmsg));
 }
@@ -1819,7 +1819,7 @@ ENTF90(PTR_ALLOC04A, ptr_alloc04a)(__NELEM_T *nelem, __INT_T *kind,
 }
 
 void
-ENTF90(SH_PTR_ALLOC04A, hmalloc_ptr_alloc04a)(char *h, __NELEM_T *nelem, __INT_T *kind,
+ENTF90(HMALLOC_PTR_ALLOC04A, hmalloc_ptr_alloc04a)(char *h, __NELEM_T *nelem, __INT_T *kind,
                                  __INT_T *len, __STAT_T *stat,
                                  char **pointer, __POINT_T *offset,
                                  __INT_T *firsttime, __NELEM_T *align,
@@ -1849,13 +1849,13 @@ ENTF90(PTR_ALLOC04, ptr_alloc04)(__NELEM_T *nelem, __INT_T *kind,
 }
 
 void
-ENTF90(SH_PTR_ALLOC04, hmalloc_ptr_alloc04)(char *h, __NELEM_T *nelem, __INT_T *kind,
+ENTF90(HMALLOC_PTR_ALLOC04, hmalloc_ptr_alloc04)(char *h, __NELEM_T *nelem, __INT_T *kind,
                                  __INT_T *len, __STAT_T *stat,
                                  char **pointer, __POINT_T *offset,
                                  __INT_T *firsttime, __NELEM_T *align,
                                  DCHAR(errmsg) DCLEN(errmsg))
 {
-  ENTF90(SH_PTR_ALLOC04A, hmalloc_ptr_alloc04a)(h, nelem, kind,
+  ENTF90(HMALLOC_PTR_ALLOC04A, hmalloc_ptr_alloc04a)(h, nelem, kind,
                                  len, stat,
                                  pointer, offset,
                                  firsttime, align,
@@ -1893,7 +1893,7 @@ ENTF90(PTR_SRC_ALLOC03A, ptr_src_alloc03a)(F90_Desc *sd, __INT_T *nelem,
 }
 
 void
-ENTF90(SH_PTR_SRC_ALLOC03A, hmalloc_ptr_src_alloc03a)(char *h, F90_Desc *sd, __INT_T *nelem,
+ENTF90(HMALLOC_PTR_SRC_ALLOC03A, hmalloc_ptr_src_alloc03a)(char *h, F90_Desc *sd, __INT_T *nelem,
                              __INT_T *kind, __INT_T *len, __STAT_T *stat,
                              char **pointer, __POINT_T *offset,
                              __INT_T *firsttime, DCHAR(errmsg) DCLEN64(errmsg))
@@ -1930,12 +1930,12 @@ ENTF90(PTR_SRC_ALLOC03, ptr_src_alloc03)(F90_Desc *sd, __INT_T *nelem,
 }
 
 void
-ENTF90(SH_PTR_SRC_ALLOC03, hmalloc_ptr_src_alloc03)(char *h, F90_Desc *sd, __INT_T *nelem,
+ENTF90(HMALLOC_PTR_SRC_ALLOC03, hmalloc_ptr_src_alloc03)(char *h, F90_Desc *sd, __INT_T *nelem,
                              __INT_T *kind, __INT_T *len, __STAT_T *stat,
                              char **pointer, __POINT_T *offset,
                              __INT_T *firsttime, DCHAR(errmsg) DCLEN(errmsg))
 {
-  ENTF90(SH_PTR_SRC_ALLOC03A, hmalloc_ptr_src_alloc03a)(h, sd, nelem,
+  ENTF90(HMALLOC_PTR_SRC_ALLOC03A, hmalloc_ptr_src_alloc03a)(h, sd, nelem,
                              kind, len, stat,
                              pointer, offset,
                              firsttime, CADR(errmsg), (__CLEN_T)CLEN(errmsg));
@@ -1966,7 +1966,7 @@ ENTF90(PTR_SRC_CALLOC03A, ptr_src_calloc03a)(F90_Desc *sd, __INT_T *nelem,
 }
 
 void
-ENTF90(SH_PTR_SRC_CALLOC03A, hmalloc_ptr_src_calloc03a)(char *h, F90_Desc *sd, __INT_T *nelem,
+ENTF90(HMALLOC_PTR_SRC_CALLOC03A, hmalloc_ptr_src_calloc03a)(char *h, F90_Desc *sd, __INT_T *nelem,
                               __INT_T *kind, __INT_T *len, __STAT_T *stat,
                               char **pointer, __POINT_T *offset,
                              __INT_T *firsttime, DCHAR(errmsg) DCLEN64(errmsg))
@@ -2002,12 +2002,12 @@ ENTF90(PTR_SRC_CALLOC03, ptr_src_calloc03)(F90_Desc *sd, __INT_T *nelem,
 }
 
 void
-ENTF90(SH_PTR_SRC_CALLOC03, hmalloc_ptr_src_calloc03)(char *h, F90_Desc *sd, __INT_T *nelem,
+ENTF90(HMALLOC_PTR_SRC_CALLOC03, hmalloc_ptr_src_calloc03)(char *h, F90_Desc *sd, __INT_T *nelem,
                               __INT_T *kind, __INT_T *len, __STAT_T *stat,
                               char **pointer, __POINT_T *offset,
                              __INT_T *firsttime, DCHAR(errmsg) DCLEN(errmsg))
 {
-  ENTF90(SH_PTR_SRC_CALLOC03A, hmalloc_ptr_src_calloc03a)(h, sd, nelem,
+  ENTF90(HMALLOC_PTR_SRC_CALLOC03A, hmalloc_ptr_src_calloc03a)(h, sd, nelem,
                               kind, len, stat,
                               pointer, offset,
                              firsttime, CADR(errmsg), (__CLEN_T)CLEN(errmsg));
@@ -2039,7 +2039,7 @@ ENTF90(PTR_SRC_ALLOC04A, ptr_src_alloc04a)(F90_Desc *sd, __NELEM_T *nelem,
 }
 
 void
-ENTF90(SH_PTR_SRC_ALLOC04A, hmalloc_ptr_src_alloc04a)(char *h, F90_Desc *sd, __NELEM_T *nelem,
+ENTF90(HMALLOC_PTR_SRC_ALLOC04A, hmalloc_ptr_src_alloc04a)(char *h, F90_Desc *sd, __NELEM_T *nelem,
                              __INT_T *kind, __INT_T *len, __STAT_T *stat,
                              char **pointer, __POINT_T *offset,
                              __INT_T *firsttime, __NELEM_T *align,
@@ -2079,13 +2079,13 @@ ENTF90(PTR_SRC_ALLOC04, ptr_src_alloc04)(F90_Desc *sd, __NELEM_T *nelem,
 }
 
 void
-ENTF90(SH_PTR_SRC_ALLOC04, hmalloc_ptr_src_alloc04)(char *h, F90_Desc *sd, __NELEM_T *nelem,
+ENTF90(HMALLOC_PTR_SRC_ALLOC04, hmalloc_ptr_src_alloc04)(char *h, F90_Desc *sd, __NELEM_T *nelem,
                              __INT_T *kind, __INT_T *len, __STAT_T *stat,
                              char **pointer, __POINT_T *offset,
                              __INT_T *firsttime, __NELEM_T *align,
                              DCHAR(errmsg) DCLEN(errmsg))
 {
-  ENTF90(SH_PTR_SRC_ALLOC04A, hmalloc_ptr_src_alloc04a)(h, sd, nelem,
+  ENTF90(HMALLOC_PTR_SRC_ALLOC04A, hmalloc_ptr_src_alloc04a)(h, sd, nelem,
                              kind, len, stat,
                              pointer, offset,
                              firsttime, align,
@@ -2124,7 +2124,7 @@ ENTF90(PTR_SRC_CALLOC04A, ptr_src_calloc04a)
 }
 
 void
-ENTF90(SH_PTR_SRC_CALLOC04A, hmalloc_ptr_src_calloc04a)
+ENTF90(HMALLOC_PTR_SRC_CALLOC04A, hmalloc_ptr_src_calloc04a)
                              (char *h, F90_Desc *sd, __NELEM_T *nelem, __INT_T *kind,
                               __INT_T *len, __STAT_T *stat, char **pointer,
                               __POINT_T *offset, __INT_T *firsttime,
@@ -2169,13 +2169,13 @@ ENTF90(PTR_SRC_CALLOC04, ptr_src_calloc04)
 }
 
 void
-ENTF90(SH_PTR_SRC_CALLOC04, hmalloc_ptr_src_calloc04)
+ENTF90(HMALLOC_PTR_SRC_CALLOC04, hmalloc_ptr_src_calloc04)
                              (char *h, F90_Desc *sd, __NELEM_T *nelem, __INT_T *kind,
                               __INT_T *len, __STAT_T *stat, char **pointer,
                               __POINT_T *offset, __INT_T *firsttime,
                               __NELEM_T *align, DCHAR(errmsg) DCLEN(errmsg))
 {
-  ENTF90(SH_PTR_SRC_CALLOC04A, hmalloc_ptr_src_calloc04a)(h, sd, nelem, kind,
+  ENTF90(HMALLOC_PTR_SRC_CALLOC04A, hmalloc_ptr_src_calloc04a)(h, sd, nelem, kind,
                               len, stat, pointer,
                               offset, firsttime,
                               align, CADR(errmsg), (__CLEN_T)CLEN(errmsg));
@@ -2196,7 +2196,7 @@ ENTF90(PTR_KALLOC, ptr_kalloc)(__INT8_T *nelem, __INT_T *kind,
 }
 
 void
-ENTF90(SH_PTR_KALLOC, hmalloc_ptr_kalloc)(char *h, __INT8_T *nelem, __INT_T *kind,
+ENTF90(HMALLOC_PTR_KALLOC, hmalloc_ptr_kalloc)(char *h, __INT8_T *nelem, __INT_T *kind,
                                __INT_T *len, __STAT_T *stat,
                                char **pointer, __POINT_T *offset,
                                DCHAR(base) DCLEN(base))
@@ -2217,7 +2217,7 @@ ENTF90(PTR_CALLOC, ptr_calloc)(__INT_T *nelem, __INT_T *kind, __INT_T *len,
 }
 
 void
-ENTF90(SH_PTR_CALLOC, hmalloc_ptr_calloc)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
+ENTF90(HMALLOC_PTR_CALLOC, hmalloc_ptr_calloc)(char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
                                __STAT_T *stat, char **pointer,
                                __POINT_T *offset, DCHAR(base) DCLEN(base))
 {
@@ -2242,7 +2242,7 @@ ENTF90(PTR_CALLOC03A, ptr_calloc03a)
 }
 
 void
-ENTF90(SH_PTR_CALLOC03A, hmalloc_ptr_calloc03a)
+ENTF90(HMALLOC_PTR_CALLOC03A, hmalloc_ptr_calloc03a)
                          (char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
                           __STAT_T *stat, char **pointer, __POINT_T *offset,
                           __INT_T *firsttime, DCHAR(errmsg) DCLEN64(errmsg))
@@ -2269,12 +2269,12 @@ ENTF90(PTR_CALLOC03, ptr_calloc03)
 }
 
 void
-ENTF90(SH_PTR_CALLOC03, hmalloc_ptr_calloc03)
+ENTF90(HMALLOC_PTR_CALLOC03, hmalloc_ptr_calloc03)
                          (char *h, __INT_T *nelem, __INT_T *kind, __INT_T *len,
                           __STAT_T *stat, char **pointer, __POINT_T *offset,
                           __INT_T *firsttime, DCHAR(errmsg) DCLEN(errmsg))
 {
-  ENTF90(SH_PTR_CALLOC03A, hmalloc_ptr_calloc03a)(h, nelem, kind, len,
+  ENTF90(HMALLOC_PTR_CALLOC03A, hmalloc_ptr_calloc03a)(h, nelem, kind, len,
                           stat, pointer, offset,
                           firsttime, CADR(errmsg), (__CLEN_T)CLEN(errmsg));
 }
@@ -2296,7 +2296,7 @@ ENTF90(PTR_CALLOC04A, ptr_calloc04a)(__NELEM_T *nelem, __INT_T *kind,
 }
 
 void
-ENTF90(SH_PTR_CALLOC04A, hmalloc_ptr_calloc04a)(char *h, __NELEM_T *nelem, __INT_T *kind,
+ENTF90(HMALLOC_PTR_CALLOC04A, hmalloc_ptr_calloc04a)(char *h, __NELEM_T *nelem, __INT_T *kind,
                                    __INT_T *len, __STAT_T *stat,
                                    char **pointer, __POINT_T *offset,
                                    __INT_T *firsttime, __NELEM_T *align,
@@ -2326,13 +2326,13 @@ ENTF90(PTR_CALLOC04, ptr_calloc04)(__NELEM_T *nelem, __INT_T *kind,
                                    CADR(errmsg), (__CLEN_T)CLEN(errmsg));
 }
 void
-ENTF90(SH_PTR_CALLOC04, hmalloc_ptr_calloc04)(char *h, __NELEM_T *nelem, __INT_T *kind,
+ENTF90(HMALLOC_PTR_CALLOC04, hmalloc_ptr_calloc04)(char *h, __NELEM_T *nelem, __INT_T *kind,
                                    __INT_T *len, __STAT_T *stat,
                                    char **pointer, __POINT_T *offset,
                                    __INT_T *firsttime, __NELEM_T *align,
                                    DCHAR(errmsg) DCLEN(errmsg))
 {
-  ENTF90(SH_PTR_CALLOC04A, hmalloc_ptr_calloc04a)(h, nelem, kind,
+  ENTF90(HMALLOC_PTR_CALLOC04A, hmalloc_ptr_calloc04a)(h, nelem, kind,
                                    len, stat,
                                    pointer, offset,
                                    firsttime, align,
@@ -2351,7 +2351,7 @@ ENTF90(PTR_KCALLOC, ptr_kcalloc)(__INT8_T *nelem, __INT_T *kind,
 }
 
 void
-ENTF90(SH_PTR_KCALLOC, hmalloc_ptr_kcalloc)(char *h, __INT8_T *nelem, __INT_T *kind,
+ENTF90(HMALLOC_PTR_KCALLOC, hmalloc_ptr_kcalloc)(char *h, __INT8_T *nelem, __INT_T *kind,
                                  __INT_T *len, __STAT_T *stat,
                                  char **pointer, __POINT_T *offset,
                                  DCHAR(base) DCLEN(base))
@@ -2633,7 +2633,7 @@ ENTF90(DEALLOCA, dealloca)(__STAT_T *stat, DCHAR(area) DCLEN64(area))
 }
 
 void
-ENTF90(SH_DEALLOCA, hmalloc_dealloca)(__STAT_T *stat, DCHAR(area) DCLEN64(area))
+ENTF90(HMALLOC_DEALLOCA, hmalloc_dealloca)(__STAT_T *stat, DCHAR(area) DCLEN64(area))
 {
   if (reuse_alloc(stat, CADR(area)))
     return;
@@ -2649,9 +2649,9 @@ ENTF90(DEALLOC, dealloc)(__STAT_T *stat, DCHAR(area) DCLEN(area))
 }
 
 void
-ENTF90(SH_DEALLOC, hmalloc_dealloc)(__STAT_T *stat, DCHAR(area) DCLEN(area))
+ENTF90(HMALLOC_DEALLOC, hmalloc_dealloc)(__STAT_T *stat, DCHAR(area) DCLEN(area))
 {
-  ENTF90(SH_DEALLOCA, hmalloc_dealloca)(stat, CADR(area), (__CLEN_T)CLEN(area));
+  ENTF90(HMALLOC_DEALLOCA, hmalloc_dealloca)(stat, CADR(area), (__CLEN_T)CLEN(area));
 }
 
 void
@@ -2668,7 +2668,7 @@ ENTF90(DEALLOC03A, dealloc03a)(__STAT_T *stat, char *area,
 }
 
 void
-ENTF90(SH_DEALLOC03A, hmalloc_dealloc03a)(__STAT_T *stat, char *area,
+ENTF90(HMALLOC_DEALLOC03A, hmalloc_dealloc03a)(__STAT_T *stat, char *area,
                              __INT_T *firsttime,
                              DCHAR(errmsg) DCLEN64(errmsg))
 {
@@ -2692,11 +2692,11 @@ ENTF90(DEALLOC03, dealloc03)(__STAT_T *stat, char *area,
 }
 
 void
-ENTF90(SH_DEALLOC03, hmalloc_dealloc03)(__STAT_T *stat, char *area,
+ENTF90(HMALLOC_DEALLOC03, hmalloc_dealloc03)(__STAT_T *stat, char *area,
                              __INT_T *firsttime,
                              DCHAR(errmsg) DCLEN(errmsg))
 {
-  ENTF90(SH_DEALLOC03A, hmalloc_dealloc03a)(stat, area,
+  ENTF90(HMALLOC_DEALLOC03A, hmalloc_dealloc03a)(stat, area,
                              firsttime,
                              CADR(errmsg), (__CLEN_T)CLEN(errmsg));
 }
@@ -2711,11 +2711,11 @@ ENTF90(DEALLOC_MBR, dealloc_mbr)(__STAT_T *stat, DCHAR(area) DCLEN(area))
 }
 
 void
-ENTF90(SH_DEALLOC_MBR, hmalloc_dealloc_mbr)(__STAT_T *stat, DCHAR(area) DCLEN(area))
+ENTF90(HMALLOC_DEALLOC_MBR, hmalloc_dealloc_mbr)(__STAT_T *stat, DCHAR(area) DCLEN(area))
 {
 
   if (I8(__fort_allocated)(CADR(area))) {
-    ENTF90(SH_DEALLOC, hmalloc_dealloc)(stat, CADR(area), CLEN(area));
+    ENTF90(HMALLOC_DEALLOC, hmalloc_dealloc)(stat, CADR(area), CLEN(area));
   }
 }
 
@@ -2731,12 +2731,12 @@ ENTF90(DEALLOC_MBR03A, dealloc_mbr03a)(__STAT_T *stat, char *area,
 }
 
 void
-ENTF90(SH_DEALLOC_MBR03A, hmalloc_dealloc_mbr03a)(__STAT_T *stat, char *area,
+ENTF90(HMALLOC_DEALLOC_MBR03A, hmalloc_dealloc_mbr03a)(__STAT_T *stat, char *area,
                                           __INT_T *firsttime,
                                           DCHAR(errmsg) DCLEN64(errmsg))
 {
   if (I8(__fort_allocated)(area)) {
-    ENTF90(SH_DEALLOC03,hmalloc_dealloc03)(stat, area, firsttime,
+    ENTF90(HMALLOC_DEALLOC03,hmalloc_dealloc03)(stat, area, firsttime,
                 CADR(errmsg), CLEN(errmsg));
   }
 }
@@ -2752,11 +2752,11 @@ ENTF90(DEALLOC_MBR03, dealloc_mbr03)(__STAT_T *stat, char *area,
 }
 
 void
-ENTF90(SH_DEALLOC_MBR03, hmalloc_dealloc_mbr03)(__STAT_T *stat, char *area,
+ENTF90(HMALLOC_DEALLOC_MBR03, hmalloc_dealloc_mbr03)(__STAT_T *stat, char *area,
                                           __INT_T *firsttime,
                                           DCHAR(errmsg) DCLEN(errmsg))
 {
-  ENTF90(SH_DEALLOC_MBR03A, hmalloc_dealloc_mbr03a)(stat, area, firsttime,
+  ENTF90(HMALLOC_DEALLOC_MBR03A, hmalloc_dealloc_mbr03a)(stat, area, firsttime,
                                           CADR(errmsg), (__CLEN_T)CLEN(errmsg));
 }
 
@@ -2767,7 +2767,7 @@ ENTF90(DEALLOCX, deallocx)(__STAT_T *stat, char **area)
 }
 
 void
-ENTF90(SH_DEALLOCX, hmalloc_deallocx)(__STAT_T *stat, char **area)
+ENTF90(HMALLOC_DEALLOCX, hmalloc_deallocx)(__STAT_T *stat, char **area)
 {
   (void)I8(__hmalloc_fort_dealloc)(*area, stat, LOCAL_MODE ? __fort_free : __fort_gfree);
 }
@@ -2912,7 +2912,7 @@ ENTF90(AUTO_ALLOCV, auto_allocv)(__NELEM_T nelem, int sz)
 }
 
 void *
-ENTF90(SH_AUTO_ALLOCV, hmalloc_auto_allocv)(char *h, __NELEM_T nelem, int sz)
+ENTF90(HMALLOC_AUTO_ALLOCV, hmalloc_auto_allocv)(char *h, __NELEM_T nelem, int sz)
 {
   void *p;
   p = I8(__hmalloc_auto_alloc)(h, nelem, sz, hmalloc_alloc);
@@ -2930,7 +2930,7 @@ ENTF90(AUTO_ALLOC, auto_alloc)(__INT_T *nelem, __INT_T *sz)
 }
 
 void *
-ENTF90(SH_AUTO_ALLOC, hmalloc_auto_alloc)(char *h, __INT_T *nelem, __INT_T *sz)
+ENTF90(HMALLOC_AUTO_ALLOC, hmalloc_auto_alloc)(char *h, __INT_T *nelem, __INT_T *sz)
 {
   void *p;
 
@@ -2948,7 +2948,7 @@ ENTF90(AUTO_ALLOC04, auto_alloc04)(__NELEM_T *nelem, __INT_T *sz)
 }
 
 void *
-ENTF90(SH_AUTO_ALLOC04, hmalloc_auto_alloc04)(char *h, __NELEM_T *nelem, __INT_T *sz)
+ENTF90(HMALLOC_AUTO_ALLOC04, hmalloc_auto_alloc04)(char *h, __NELEM_T *nelem, __INT_T *sz)
 {
   void *p;
 
@@ -2972,7 +2972,7 @@ ENTF90(AUTO_CALLOC, auto_calloc)(__INT_T *nelem, __INT_T *sz)
 }
 
 void *
-ENTF90(SH_AUTO_CALLOC, hmalloc_auto_calloc)(char *h, __INT_T *nelem, __INT_T *sz)
+ENTF90(HMALLOC_AUTO_CALLOC, hmalloc_auto_calloc)(char *h, __INT_T *nelem, __INT_T *sz)
 {
   size_t size;
   void *p;
@@ -3002,7 +3002,7 @@ ENTF90(AUTO_CALLOC04, auto_calloc04)(__NELEM_T *nelem, __INT_T *sz)
 }
 
 void *
-ENTF90(SH_AUTO_CALLOC04, hmalloc_auto_calloc04)(char *h, __NELEM_T *nelem, __INT_T *sz)
+ENTF90(HMALLOC_AUTO_CALLOC04, hmalloc_auto_calloc04)(char *h, __NELEM_T *nelem, __INT_T *sz)
 {
   size_t size;
   void *p;
@@ -3020,7 +3020,7 @@ void
 ENTF90(AUTO_DEALLOC, auto_dealloc)(void *area) { free(XYZZY(area)); }
 
 void
-ENTF90(SH_AUTO_DEALLOC, hmalloc_auto_dealloc)(void *area) { hmalloc_free(XYZZY(area)); }
+ENTF90(HMALLOC_AUTO_DEALLOC, hmalloc_auto_dealloc)(void *area) { hmalloc_free(XYZZY(area)); }
 
 #if defined(DEBUG)
 void

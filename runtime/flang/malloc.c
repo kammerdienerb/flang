@@ -28,6 +28,16 @@ extern void *shmalloc(size_t);
 
 #define ZIP ((char *)15L)
 
+void *hmalloc(char *h, size_t n);
+void hfree(void *ptr);
+void *hrealloc(char *h, void *ptr, size_t size);
+void *hcalloc(char *h, size_t nmemb, size_t size);
+
+#define hmalloc_alloc   hmalloc
+#define hmalloc_free    hfree
+#define hmalloc_realloc hrealloc
+#define hmalloc_calloc  hcalloc
+
 /* malloc */
 
 void *
@@ -44,11 +54,35 @@ __fort_malloc_without_abort(size_t n)
 }
 
 void *
+__hmalloc_fort_malloc_without_abort(char *h, size_t n)
+{
+  char *p;
+
+  if (n == 0)
+    return ZIP;
+  p = hmalloc_alloc(h, n);
+  if (__fort_zmem && (p != NULL))
+    memset(p, '\0', n);
+  return p;
+}
+
+void *
 __fort_malloc(size_t n)
 {
   char *p;
 
   p = __fort_malloc_without_abort(n);
+  if (p == (char *)0)
+    __fort_abort("__fort_malloc: not enough memory");
+  return p;
+}
+
+void *
+__hmalloc_fort_malloc(char *h, size_t n)
+{
+  char *p;
+
+  p = __hmalloc_fort_malloc_without_abort(h, n);
   if (p == (char *)0)
     __fort_abort("__fort_malloc: not enough memory");
   return p;
@@ -80,6 +114,30 @@ __fort_realloc(void *ptr, size_t n)
   return (p);
 }
 
+void *
+__hmalloc_fort_realloc(char *h, void *ptr, size_t n)
+{
+  char *p;
+
+  if (ptr == (char *)0 | ptr == ZIP) {
+    if (n == 0)
+      return ZIP;
+    p = hmalloc_alloc(h, n);
+    if (__fort_zmem && (p != NULL))
+      memset(p, '\0', n);
+  } else {
+    if (n == 0) {
+      hmalloc_free(ptr);
+      return ZIP;
+    }
+    p = hmalloc_realloc(h, ptr, n);
+  }
+  if (p == (char *)0) {
+    __fort_abort("__fort_realloc: not enough memory");
+  }
+  return (p);
+}
+
 /* calloc */
 
 void *
@@ -90,6 +148,19 @@ __fort_calloc_without_abort(size_t n)
   if (n == 0)
     return ZIP;
   p = malloc(n);
+  if (p != NULL)
+    memset(p, '\0', n);
+  return p;
+}
+
+void *
+__hmalloc_fort_calloc_without_abort(char *h, size_t n)
+{
+  char *p;
+
+  if (n == 0)
+    return ZIP;
+  p = hmalloc_alloc(h, n);
   if (p != NULL)
     memset(p, '\0', n);
   return p;
@@ -109,6 +180,20 @@ __fort_calloc(size_t n, size_t s)
   return (p);
 }
 
+void *
+__hmalloc_fort_calloc(char *h, size_t n, size_t s)
+{
+  char *p;
+
+  if (n == 0 | s == 0)
+    return ZIP;
+  p = hmalloc_calloc(h, n, s);
+  if (p == (char *)0) {
+    __fort_abort("__fort_calloc: not enough memory");
+  }
+  return (p);
+}
+
 /* free */
 
 void
@@ -116,6 +201,14 @@ __fort_free(void *ptr)
 {
   if (ptr != (char *)0 & ptr != ZIP) {
     free(ptr);
+  }
+}
+
+void
+__hmalloc_fort_free(void *ptr)
+{
+  if (ptr != (char *)0 & ptr != ZIP) {
+    hmalloc_free(ptr);
   }
 }
 
@@ -130,9 +223,21 @@ __fort_gmalloc_without_abort(size_t n)
 }
 
 void *
+__hmalloc_fort_gmalloc_without_abort(char *h, size_t n)
+{
+  return __hmalloc_fort_malloc_without_abort(h, n);
+}
+
+void *
 __fort_gmalloc(size_t n)
 {
   return __fort_malloc(n);
+}
+
+void *
+__hmalloc_fort_gmalloc(char *h, size_t n)
+{
+  return __hmalloc_fort_malloc(h, n);
 }
 
 void *
@@ -142,9 +247,21 @@ __fort_grealloc(void *ptr, size_t n)
 }
 
 void *
+__hmalloc_fort_grealloc(char *h, void *ptr, size_t n)
+{
+  return __hmalloc_fort_realloc(h, ptr, n);
+}
+
+void *
 __fort_gcalloc_without_abort(size_t n)
 {
   return __fort_calloc_without_abort(n);
+}
+
+void *
+__hmalloc_fort_gcalloc_without_abort(char *h, size_t n)
+{
+  return __hmalloc_fort_calloc_without_abort(h, n);
 }
 
 void *
@@ -153,9 +270,20 @@ __fort_gcalloc(size_t n, size_t s)
   return __fort_calloc(n, s);
 }
 
+void *
+__hmalloc_fort_gcalloc(char *h, size_t n, size_t s)
+{
+  return __hmalloc_fort_calloc(h, n, s);
+}
+
 void
 __fort_gfree(void *ptr)
 {
   __fort_free(ptr);
 }
 
+void
+__hmalloc_fort_gfree(void *ptr)
+{
+  __hmalloc_fort_free(ptr);
+}

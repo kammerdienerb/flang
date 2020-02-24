@@ -28,15 +28,15 @@ extern void *shmalloc(size_t);
 
 #define ZIP ((char *)15L)
 
-void *hmalloc(char *h, size_t n);
-void hfree(void *ptr);
-void *hrealloc(char *h, void *ptr, size_t size);
-void *hcalloc(char *h, size_t nmemb, size_t size);
+void *hmalloc_site_malloc(char *h, size_t n);
+void hmalloc_site_free(void *ptr);
+void *hmalloc_site_realloc(char *h, void *ptr, size_t size);
+void *hmalloc_site_calloc(char *h, size_t nmemb, size_t size);
 
-#define hmalloc_alloc   hmalloc
-#define hmalloc_free    hfree
-#define hmalloc_realloc hrealloc
-#define hmalloc_calloc  hcalloc
+#define hmalloc_alloc   hmalloc_site_malloc
+#define hmalloc_free    hmalloc_site_free
+#define hmalloc_realloc hmalloc_site_realloc
+#define hmalloc_calloc  hmalloc_site_calloc
 
 /* malloc */
 

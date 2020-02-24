@@ -31,11 +31,11 @@
 #include "mpalloc.h"
 #include "f90alloc.h"
 
-void *hmalloc(char *h, size_t n);
-void hfree(void *ptr);
+void *hmalloc_site_malloc(char *h, size_t n);
+void hmalloc_site_free(void *ptr);
 
-#define hmalloc_alloc hmalloc
-#define hmalloc_free hfree
+#define hmalloc_alloc hmalloc_site_malloc
+#define hmalloc_free hmalloc_site_free
 
 MP_SEMAPHORE(static, sem);
 
